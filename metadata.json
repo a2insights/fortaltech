@@ -1,0 +1,7 @@
+{
+  "name": "FortalTech | Soluções Tecnológicas na Região Metropolitana de Fortaleza",
+  "description": "Especialistas em infraestrutura técnica, manutenção de ativos, telemetria veicular e redes PME atendendo Fortaleza e toda a Região Metropolitana.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
