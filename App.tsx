@@ -438,7 +438,7 @@ const App: React.FC = () => {
       <Header onNavigate={setCurrentView} currentView={currentView} />
       <main>{renderView()}</main>
       <Footer onNavigate={setCurrentView} />
-      <CookieConsent />
+      <CookieConsent onNavigate={setCurrentView} />
     </div>
   );
 };

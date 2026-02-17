@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cookie, X } from 'lucide-react';
 
-export default function CookieConsent() {
+export default function CookieConsent({
+  onNavigate,
+}: {
+  onNavigate?: (view: string) => void;
+}) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -63,12 +67,12 @@ export default function CookieConsent() {
                   Utilizamos cookies para melhorar sua experiência, analisar o
                   tráfego e personalizar conteúdo. Ao navegar, você concorda com
                   nossa{' '}
-                  <a
-                    href="/legal"
-                    className="text-blue-600 hover:underline font-medium"
+                  <button
+                    onClick={() => onNavigate?.('privacy')}
+                    className="text-blue-600 hover:underline font-medium bg-transparent border-none p-0 cursor-pointer"
                   >
                     Política de Privacidade
-                  </a>
+                  </button>
                   .
                 </p>
               </div>
