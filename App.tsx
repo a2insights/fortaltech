@@ -19,6 +19,7 @@ import StorytellingScroll from './components/StorytellingScroll';
 import BlogView from './components/BlogView';
 import BlogPostView from './components/BlogPostView';
 import CareersView from './components/CareersView';
+import CookieConsent from './components/CookieConsent';
 import {
   ArrowRight,
   CheckCircle2,
@@ -437,6 +438,7 @@ const App: React.FC = () => {
       <Header onNavigate={setCurrentView} currentView={currentView} />
       <main>{renderView()}</main>
       <Footer onNavigate={setCurrentView} />
+      <CookieConsent />
     </div>
   );
 };
