@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Menu,
   X,
@@ -9,9 +9,9 @@ import {
   BarChart4,
   FileDown,
   Loader2,
-} from "lucide-react";
-import { MEGA_MENU_PROJECTS } from "../constants";
-import { exportCatalogToPDF } from "./CatalogExporter";
+} from 'lucide-react';
+import { MEGA_MENU_PROJECTS } from '../constants';
+import { exportCatalogToPDF } from './CatalogExporter';
 
 interface HeaderProps {
   onNavigate: (view: string) => void;
@@ -22,31 +22,31 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [headerTheme, setHeaderTheme] = useState<
-    "transparent" | "light" | "dark"
-  >("transparent");
+    'transparent' | 'light' | 'dark'
+  >('transparent');
   const [isExporting, setIsExporting] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       // Logic: Find the element under the header (e.g. at 80px down)
       const element = document.elementFromPoint(window.innerWidth / 2, 80);
-      const themedSection = element?.closest("[data-header-theme]");
+      const themedSection = element?.closest('[data-header-theme]');
 
       if (themedSection) {
-        const theme = themedSection.getAttribute("data-header-theme") as
-          | "transparent"
-          | "light"
-          | "dark";
-        setHeaderTheme(theme || "transparent");
+        const theme = themedSection.getAttribute('data-header-theme') as
+          | 'transparent'
+          | 'light'
+          | 'dark';
+        setHeaderTheme(theme || 'transparent');
       } else if (window.scrollY < 50) {
         // Fallback for very top
-        setHeaderTheme("transparent");
+        setHeaderTheme('transparent');
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     handleScroll(); // Check on mount
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [currentView]); // Re-run if view changes
 
   const handleLinkClick = (
@@ -67,15 +67,15 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
     setIsMegaMenuOpen(false);
 
     const targetView =
-      view.includes("a2insights") || hash === "#contact" ? "home" : view;
+      view.includes('a2insights') || hash === '#contact' ? 'home' : view;
     const targetHash =
-      view.includes("a2insights") || hash === "#contact" ? "#contact" : hash;
+      view.includes('a2insights') || hash === '#contact' ? '#contact' : hash;
 
     if (currentView !== targetView) {
       onNavigate(targetView);
       if (targetHash) {
         setTimeout(() => {
-          const element = document.getElementById(targetHash.replace("#", ""));
+          const element = document.getElementById(targetHash.replace('#', ''));
           if (element) {
             const headerOffset = 80;
             const elementPosition = element.getBoundingClientRect().top;
@@ -83,16 +83,16 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
               elementPosition + window.pageYOffset - headerOffset;
             window.scrollTo({
               top: offsetPosition,
-              behavior: "smooth",
+              behavior: 'smooth',
             });
           }
         }, 150);
       } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } else {
       if (targetHash) {
-        const element = document.getElementById(targetHash.replace("#", ""));
+        const element = document.getElementById(targetHash.replace('#', ''));
         if (element) {
           const headerOffset = 80;
           const elementPosition = element.getBoundingClientRect().top;
@@ -100,11 +100,11 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
             elementPosition + window.pageYOffset - headerOffset;
           window.scrollTo({
             top: offsetPosition,
-            behavior: "smooth",
+            behavior: 'smooth',
           });
         }
       } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
   };
@@ -118,44 +118,44 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
     setIsMegaMenuOpen(false);
   };
 
-  const isHome = currentView === "home";
+  const isHome = currentView === 'home';
   // Force light theme if menu/megamenu is open or not home (unless mapped)
   const activeTheme =
     isMenuOpen || isMegaMenuOpen
-      ? "light"
+      ? 'light'
       : themeForView(currentView, headerTheme);
 
   function themeForView(view: string, current: string) {
-    if (view !== "home") return "light";
+    if (view !== 'home') return 'light';
     return current;
   }
 
   // Styles based on theme
   const getHeaderStyles = () => {
     switch (activeTheme) {
-      case "light":
-        return "bg-white shadow-md text-gray-800";
-      case "dark":
-        return "bg-[#0a1628] shadow-md text-white";
-      case "transparent":
+      case 'light':
+        return 'bg-white shadow-md text-gray-800';
+      case 'dark':
+        return 'bg-[#0a1628] shadow-md text-white';
+      case 'transparent':
       default:
-        return "bg-transparent text-white";
+        return 'bg-transparent text-white';
     }
   };
 
   const headerStyles = getHeaderStyles();
   const textColorClass =
-    activeTheme === "light" ? "text-[#395fa3]" : "text-white";
+    activeTheme === 'light' ? 'text-[#395fa3]' : 'text-white';
   const subTextColorClass =
-    activeTheme === "light" ? "text-gray-500" : "text-gray-200";
-  const navTextClass = activeTheme === "light" ? "text-gray-800" : "text-white";
-  const iconClass = activeTheme === "light" ? "text-gray-800" : "text-white";
+    activeTheme === 'light' ? 'text-gray-500' : 'text-gray-200';
+  const navTextClass = activeTheme === 'light' ? 'text-gray-800' : 'text-white';
+  const iconClass = activeTheme === 'light' ? 'text-gray-800' : 'text-white';
 
   const getIcon = (title: string) => {
-    if (title.includes("A2insights"))
+    if (title.includes('A2insights'))
       return <FlaskConical className="w-5 h-5" />;
-    if (title.includes("Sistemas")) return <LayoutGrid className="w-5 h-5" />;
-    if (title.includes("Consultoria")) return <BarChart4 className="w-5 h-5" />;
+    if (title.includes('Sistemas')) return <LayoutGrid className="w-5 h-5" />;
+    if (title.includes('Consultoria')) return <BarChart4 className="w-5 h-5" />;
     return <BarChart4 className="w-5 h-5" />;
   };
 
@@ -167,7 +167,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
         {/* Logo */}
         <div
           className="flex items-center space-x-2 cursor-pointer h-full"
-          onClick={(e) => handleLinkClick(e, "home")}
+          onClick={(e) => handleLinkClick(e, 'home')}
         >
           <div className="w-10 h-10 bg-[#aa1a20] rounded-lg flex items-center justify-center transform rotate-45 shadow-sm">
             <Cpu className="text-white w-6 h-6 transform -rotate-45" />
@@ -190,7 +190,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
         <nav className="hidden lg:flex items-center space-x-8 h-full">
           <a
             href="#home"
-            onClick={(e) => handleLinkClick(e, "home")}
+            onClick={(e) => handleLinkClick(e, 'home')}
             className={`font-bold hover:text-[#aa1a20] transition-colors py-2 ${navTextClass}`}
           >
             Início
@@ -204,15 +204,15 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
             <button
               className={`flex items-center font-bold hover:text-[#aa1a20] transition-colors ${navTextClass}`}
             >
-              Software & Labs{" "}
+              Software & Labs{' '}
               <ChevronDown
-                className={`ml-1 w-4 h-4 transition-transform duration-300 ${isMegaMenuOpen ? "rotate-180" : ""}`}
+                className={`ml-1 w-4 h-4 transition-transform duration-300 ${isMegaMenuOpen ? 'rotate-180' : ''}`}
               />
             </button>
 
             {/* Mega Menu Container */}
             <div
-              className={`absolute left-0 right-0 top-full pt-0 transition-all duration-300 ${isMegaMenuOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible translate-y-2"}`}
+              className={`absolute left-0 right-0 top-full pt-0 transition-all duration-300 ${isMegaMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'}`}
             >
               <div className="container mx-auto px-4">
                 <div className="bg-white shadow-[0_60px_120px_rgba(0,0,0,0.18)] rounded-b-[4rem] overflow-hidden border border-gray-100 flex max-w-screen-2xl mx-auto min-h-[500px]">
@@ -246,22 +246,22 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
                           <a
                             key={idx}
                             href={
-                              item.link.startsWith("http") ? item.link : "#"
+                              item.link.startsWith('http') ? item.link : '#'
                             }
-                            target={item.isExternal ? "_blank" : "_self"}
+                            target={item.isExternal ? '_blank' : '_self'}
                             onClick={(e) =>
                               handleLinkClick(e, item.link, item.isExternal)
                             }
                             className="group flex items-center space-x-8 hover:bg-gray-50 p-5 rounded-3xl transition-all border border-transparent hover:border-gray-100"
                           >
                             <div
-                              className={`w-16 h-16 rounded-[1.5rem] flex items-center justify-center transition-all duration-300 shadow-sm shrink-0 ${item.title.includes("A2insights") ? "bg-red-50 text-[#aa1a20] group-hover:bg-[#aa1a20] group-hover:text-white" : "bg-blue-50 text-[#395fa3] group-hover:bg-[#395fa3] group-hover:text-white"}`}
+                              className={`w-16 h-16 rounded-[1.5rem] flex items-center justify-center transition-all duration-300 shadow-sm shrink-0 ${item.title.includes('A2insights') ? 'bg-red-50 text-[#aa1a20] group-hover:bg-[#aa1a20] group-hover:text-white' : 'bg-blue-50 text-[#395fa3] group-hover:bg-[#395fa3] group-hover:text-white'}`}
                             >
                               {getIcon(item.title)}
                             </div>
                             <div>
                               <h4
-                                className={`font-black text-xl transition-colors ${item.title.includes("A2insights") ? "text-[#aa1a20]" : "text-[#395fa3]"}`}
+                                className={`font-black text-xl transition-colors ${item.title.includes('A2insights') ? 'text-[#aa1a20]' : 'text-[#395fa3]'}`}
                               >
                                 {item.title}
                               </h4>
@@ -293,7 +293,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
                         <div className="flex items-center justify-between mb-10">
                           <div
                             className={`w-18 h-18 rounded-3xl flex items-center justify-center shadow-lg transition-all duration-500 group-hover:scale-110 
-                                      ${isExporting ? "bg-white text-[#aa1a20]" : "bg-white text-[#395fa3] group-hover:bg-white/20 group-hover:text-white"}`}
+                                      ${isExporting ? 'bg-white text-[#aa1a20]' : 'bg-white text-[#395fa3] group-hover:bg-white/20 group-hover:text-white'}`}
                           >
                             {isExporting ? (
                               <Loader2 className="w-10 h-10 animate-spin" />
@@ -330,17 +330,17 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
                           className={`mt-14 flex items-center space-x-4 
                                     text-[11px] font-black uppercase tracking-[0.2em]
                                     transition-colors
-                                    ${isExporting ? "text-[#aa1a20] group-hover:text-white" : "text-[#aa1a20] group-hover:text-white"}`}
+                                    ${isExporting ? 'text-[#aa1a20] group-hover:text-white' : 'text-[#aa1a20] group-hover:text-white'}`}
                         >
                           <div
                             className={`w-2.5 h-2.5 rounded-full transition-all duration-300
-                                      ${isExporting ? "bg-[#aa1a20] animate-ping group-hover:bg-white" : "bg-[#aa1a20] group-hover:bg-white"}`}
+                                      ${isExporting ? 'bg-[#aa1a20] animate-ping group-hover:bg-white' : 'bg-[#aa1a20] group-hover:bg-white'}`}
                           ></div>
 
                           <span>
                             {isExporting
-                              ? "Gerando Catálogo..."
-                              : "Baixar Portfólio Completo"}
+                              ? 'Gerando Catálogo...'
+                              : 'Baixar Portfólio Completo'}
                           </span>
                         </div>
                       </button>
@@ -353,7 +353,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
 
           <a
             href="#services"
-            onClick={(e) => handleLinkClick(e, "home", false, "#services")}
+            onClick={(e) => handleLinkClick(e, 'home', false, '#services')}
             className={`font-bold hover:text-[#aa1a20] transition-colors ${navTextClass}`}
           >
             Serviços
@@ -362,22 +362,22 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              onNavigate("blog");
+              onNavigate('blog');
             }}
-            className={`flex items-center font-bold hover:text-[#aa1a20] transition-colors ${currentView === "blog" ? "text-[#aa1a20]" : navTextClass}`}
+            className={`flex items-center font-bold hover:text-[#aa1a20] transition-colors ${currentView === 'blog' ? 'text-[#aa1a20]' : navTextClass}`}
           >
             Blog
           </a>
           <a
             href="#contact"
-            onClick={(e) => handleLinkClick(e, "home", false, "#contact")}
+            onClick={(e) => handleLinkClick(e, 'home', false, '#contact')}
             className={`font-bold hover:text-[#aa1a20] transition-colors ${navTextClass}`}
           >
             Contato
           </a>
           <a
             href="#contact"
-            onClick={(e) => handleLinkClick(e, "home", false, "#contact")}
+            onClick={(e) => handleLinkClick(e, 'home', false, '#contact')}
             className="bg-[#aa1a20] text-white px-10 py-3.5 rounded-full font-black text-sm uppercase tracking-[0.2em] hover:bg-[#395fa3] transition-all transform hover:scale-105 shadow-xl shadow-red-900/10"
           >
             Orçamento
@@ -399,7 +399,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed inset-0 bg-white z-[60] transition-transform duration-500 ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`lg:hidden fixed inset-0 bg-white z-[60] transition-transform duration-500 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <div className="p-8 h-full overflow-y-auto">
           <div className="flex justify-between items-center mb-16">
@@ -417,7 +417,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
             <a
               href="#home"
               className="block text-gray-800 font-black text-2xl"
-              onClick={(e) => handleLinkClick(e, "home")}
+              onClick={(e) => handleLinkClick(e, 'home')}
             >
               Início
             </a>
@@ -430,9 +430,9 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
                 {MEGA_MENU_PROJECTS.map((item, idx) => (
                   <a
                     key={idx}
-                    href={item.link.startsWith("http") ? item.link : "#"}
-                    target={item.isExternal ? "_blank" : "_self"}
-                    className={`block font-black text-xl flex items-center ${item.title.includes("A2insights") ? "text-[#aa1a20]" : "text-[#395fa3]"}`}
+                    href={item.link.startsWith('http') ? item.link : '#'}
+                    target={item.isExternal ? '_blank' : '_self'}
+                    className={`block font-black text-xl flex items-center ${item.title.includes('A2insights') ? 'text-[#aa1a20]' : 'text-[#395fa3]'}`}
                     onClick={(e) =>
                       handleLinkClick(e, item.link, item.isExternal)
                     }
@@ -454,7 +454,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
                       <FileDown className="w-6 h-6" />
                     )}
                     <span className="text-xs font-black uppercase tracking-[0.2em]">
-                      {isExporting ? "Processando..." : "Baixar Catálogo PDF"}
+                      {isExporting ? 'Processando...' : 'Baixar Catálogo PDF'}
                     </span>
                   </div>
                 </button>
@@ -467,7 +467,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
               onClick={(e) => {
                 e.preventDefault();
                 setIsMenuOpen(false);
-                onNavigate("blog");
+                onNavigate('blog');
               }}
             >
               Blog
@@ -475,21 +475,21 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentView }) => {
             <a
               href="#services"
               className="block text-gray-800 font-black text-2xl pl-4"
-              onClick={(e) => handleLinkClick(e, "home", false, "#services")}
+              onClick={(e) => handleLinkClick(e, 'home', false, '#services')}
             >
               Serviços
             </a>
             <a
               href="#contact"
               className="block text-gray-800 font-black text-2xl pl-4"
-              onClick={(e) => handleLinkClick(e, "home", false, "#contact")}
+              onClick={(e) => handleLinkClick(e, 'home', false, '#contact')}
             >
               Contato
             </a>
 
             <a
               href="#contact"
-              onClick={(e) => handleLinkClick(e, "home", false, "#contact")}
+              onClick={(e) => handleLinkClick(e, 'home', false, '#contact')}
               className="block bg-[#aa1a20] text-white text-center py-6 rounded-[2.5rem] font-black uppercase tracking-[0.2em] text-base shadow-2xl shadow-red-900/30"
             >
               Solicitar Orçamento

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Monitor,
   Cpu,
@@ -21,7 +21,7 @@ import {
   MousePointer2,
   Rocket,
   ExternalLink,
-} from "lucide-react";
+} from 'lucide-react';
 
 interface SystemsViewProps {
   onNavigate: (view: string) => void;
@@ -30,11 +30,11 @@ interface SystemsViewProps {
 const SystemsView: React.FC<SystemsViewProps> = ({ onNavigate }) => {
   const scrollToContact = (e: React.MouseEvent) => {
     e.preventDefault();
-    onNavigate("home");
+    onNavigate('home');
     setTimeout(() => {
-      const element = document.getElementById("contact");
+      const element = document.getElementById('contact');
       if (element)
-        window.scrollTo({ top: element.offsetTop - 80, behavior: "smooth" });
+        window.scrollTo({ top: element.offsetTop - 80, behavior: 'smooth' });
     }, 150);
   };
 
@@ -73,7 +73,7 @@ const SystemsView: React.FC<SystemsViewProps> = ({ onNavigate }) => {
                   onClick={scrollToContact}
                   className="bg-[#aa1a20] hover:bg-white hover:text-[#0a1628] text-white px-10 py-5 rounded-2xl font-black transition-all shadow-xl flex items-center group"
                 >
-                  Falar com um Arquiteto de Software{" "}
+                  Falar com um Arquiteto de Software{' '}
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </button>
                 <a
@@ -107,14 +107,14 @@ const SystemsView: React.FC<SystemsViewProps> = ({ onNavigate }) => {
                   </p>
                   <p> Building custom ERP for RMF Logistics...</p>
                   <p className="text-white/40">
-                    {" "}
+                    {' '}
                     Compiling React components...
                   </p>
                   <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
                     <div className="h-full bg-[#aa1a20] w-[65%] animate-pulse"></div>
                   </div>
                   <p className="text-[#395fa3]">
-                    {" "}
+                    {' '}
                     AWS Cloud Infrastructure: DEPLOYED
                   </p>
                   <p className="text-white"> Status: READY TO INNOVATE</p>
@@ -135,23 +135,23 @@ const SystemsView: React.FC<SystemsViewProps> = ({ onNavigate }) => {
                 {[
                   {
                     icon: <Globe className="w-8 h-8" />,
-                    title: "Web Apps",
-                    desc: "Plataformas SaaS e Dashboards de BI de alta densidade.",
+                    title: 'Web Apps',
+                    desc: 'Plataformas SaaS e Dashboards de BI de alta densidade.',
                   },
                   {
                     icon: <Smartphone className="w-8 h-8" />,
-                    title: "Mobile",
-                    desc: "Aplicativos nativos iOS e Android para equipes de campo.",
+                    title: 'Mobile',
+                    desc: 'Aplicativos nativos iOS e Android para equipes de campo.',
                   },
                   {
                     icon: <Zap className="w-8 h-8" />,
-                    title: "IoT Hub",
-                    desc: "Conectividade de hardware FortalTech com a nuvem.",
+                    title: 'IoT Hub',
+                    desc: 'Conectividade de hardware FortalTech com a nuvem.',
                   },
                   {
                     icon: <Database className="w-8 h-8" />,
-                    title: "E-commerce",
-                    desc: "Sistemas B2B e B2C integrados a ERPs locais.",
+                    title: 'E-commerce',
+                    desc: 'Sistemas B2B e B2C integrados a ERPs locais.',
                   },
                 ].map((card, i) => (
                   <div
@@ -181,17 +181,17 @@ const SystemsView: React.FC<SystemsViewProps> = ({ onNavigate }) => {
                 Engenharia de Resultados.
               </h3>
               <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                Diferente de agências comuns, o <strong>A2insights Lab</strong>{" "}
+                Diferente de agências comuns, o <strong>A2insights Lab</strong>{' '}
                 nasceu dentro da FortalTech para resolver desafios reais de
                 infraestrutura. Nosso código é limpo, escalável e focado em
                 resolver o "gap" entre o mundo físico e o digital.
               </p>
               <div className="space-y-4 mb-10">
                 {[
-                  "Desenvolvimento Ágil (Scrum/Kanban)",
-                  "Arquitetura de Microserviços Cloud Native",
+                  'Desenvolvimento Ágil (Scrum/Kanban)',
+                  'Arquitetura de Microserviços Cloud Native',
                   "Segurança 'By Design' integrada",
-                  "Interfaces focadas em UX/UI de Alta Conversão",
+                  'Interfaces focadas em UX/UI de Alta Conversão',
                 ].map((text, i) => (
                   <div
                     key={i}
@@ -238,7 +238,7 @@ const SystemsView: React.FC<SystemsViewProps> = ({ onNavigate }) => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center bg-white text-[#aa1a20] px-10 py-5 rounded-2xl font-black text-sm hover:bg-[#0a1628] hover:text-white transition-all transform hover:scale-105 shadow-2xl group"
               >
-                Explorar Portal do Lab{" "}
+                Explorar Portal do Lab{' '}
                 <ExternalLink className="ml-3 w-5 h-5 group-hover:rotate-12 transition-transform" />
               </a>
             </div>
@@ -282,12 +282,12 @@ const SystemsView: React.FC<SystemsViewProps> = ({ onNavigate }) => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
             {[
-              { name: "React / Next.js", icon: <Code2 /> },
-              { name: "Node.js / Go", icon: <Terminal /> },
-              { name: "AWS / Cloud", icon: <Server /> },
-              { name: "PostgreSQL / NoSQL", icon: <Database /> },
-              { name: "Docker / K8s", icon: <Layers /> },
-              { name: "AI & ML", icon: <Rocket /> },
+              { name: 'React / Next.js', icon: <Code2 /> },
+              { name: 'Node.js / Go', icon: <Terminal /> },
+              { name: 'AWS / Cloud', icon: <Server /> },
+              { name: 'PostgreSQL / NoSQL', icon: <Database /> },
+              { name: 'Docker / K8s', icon: <Layers /> },
+              { name: 'AI & ML', icon: <Rocket /> },
             ].map((tech, i) => (
               <div
                 key={i}
@@ -295,7 +295,7 @@ const SystemsView: React.FC<SystemsViewProps> = ({ onNavigate }) => {
               >
                 <div className="text-gray-300 group-hover:text-[#aa1a20] transition-colors mb-4 transform group-hover:scale-110">
                   {React.cloneElement(tech.icon as React.ReactElement<any>, {
-                    className: "w-10 h-10",
+                    className: 'w-10 h-10',
                   })}
                 </div>
                 <span className="text-[10px] font-black uppercase text-gray-400 group-hover:text-[#395fa3] tracking-widest">
@@ -324,7 +324,7 @@ const SystemsView: React.FC<SystemsViewProps> = ({ onNavigate }) => {
                 onClick={scrollToContact}
                 className="text-[#aa1a20] font-black uppercase tracking-widest text-xs flex items-center hover:text-white transition-colors group"
               >
-                Solicitar Demo{" "}
+                Solicitar Demo{' '}
                 <ChevronRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform" />
               </button>
             </div>

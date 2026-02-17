@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Services from "./components/Services";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import SystemsView from "./components/SystemsView";
-import ConsultancyView from "./components/ConsultancyView";
-import DigitalSolutionsView from "./components/DigitalSolutionsView";
-import AboutView from "./components/AboutView";
-import AssessmentView from "./components/AssessmentView";
-import LegalView from "./components/LegalView";
-import ServiceDetailView from "./components/ServiceDetailView";
-import SoftwareCarousel from "./components/SoftwareCarousel";
-import A2insightsSection from "./components/A2insightsSection";
-import FAQ from "./components/FAQ";
-import ProcessSection from "./components/ProcessSection";
-import StorytellingScroll from "./components/StorytellingScroll";
-import BlogView from "./components/BlogView";
-import BlogPostView from "./components/BlogPostView";
-import CareersView from "./components/CareersView";
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Services from './components/Services';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import SystemsView from './components/SystemsView';
+import ConsultancyView from './components/ConsultancyView';
+import DigitalSolutionsView from './components/DigitalSolutionsView';
+import AboutView from './components/AboutView';
+import AssessmentView from './components/AssessmentView';
+import LegalView from './components/LegalView';
+import ServiceDetailView from './components/ServiceDetailView';
+import SoftwareCarousel from './components/SoftwareCarousel';
+import A2insightsSection from './components/A2insightsSection';
+import FAQ from './components/FAQ';
+import ProcessSection from './components/ProcessSection';
+import StorytellingScroll from './components/StorytellingScroll';
+import BlogView from './components/BlogView';
+import BlogPostView from './components/BlogPostView';
+import CareersView from './components/CareersView';
 import {
   ArrowRight,
   CheckCircle2,
@@ -31,10 +31,10 @@ import {
   Thermometer,
   Rocket,
   Users,
-} from "lucide-react";
+} from 'lucide-react';
 
 const App: React.FC = () => {
-  const [currentView, setCurrentView] = useState("home");
+  const [currentView, setCurrentView] = useState('home');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -42,59 +42,59 @@ const App: React.FC = () => {
 
   const scrollToContact = (e?: React.MouseEvent) => {
     if (e) e.preventDefault();
-    if (currentView !== "home") {
-      setCurrentView("home");
+    if (currentView !== 'home') {
+      setCurrentView('home');
       setTimeout(() => {
-        const element = document.getElementById("contact");
+        const element = document.getElementById('contact');
         if (element) {
-          window.scrollTo({ top: element.offsetTop - 80, behavior: "smooth" });
+          window.scrollTo({ top: element.offsetTop - 80, behavior: 'smooth' });
         }
       }, 150);
     } else {
-      const element = document.getElementById("contact");
+      const element = document.getElementById('contact');
       if (element) {
-        window.scrollTo({ top: element.offsetTop - 80, behavior: "smooth" });
+        window.scrollTo({ top: element.offsetTop - 80, behavior: 'smooth' });
       }
     }
   };
 
   const renderView = () => {
-    if (currentView.startsWith("service-")) {
-      const slug = currentView.replace("service-", "");
+    if (currentView.startsWith('service-')) {
+      const slug = currentView.replace('service-', '');
       return (
         <ServiceDetailView serviceSlug={slug} onNavigate={setCurrentView} />
       );
     }
 
-    if (currentView.startsWith("post-")) {
-      const slug = currentView.replace("post-", "");
+    if (currentView.startsWith('post-')) {
+      const slug = currentView.replace('post-', '');
       return <BlogPostView postSlug={slug} onNavigate={setCurrentView} />;
     }
 
-    if (currentView === "blog") {
+    if (currentView === 'blog') {
       return <BlogView onNavigate={setCurrentView} />;
     }
 
-    if (currentView === "careers") {
+    if (currentView === 'careers') {
       return <CareersView onNavigate={setCurrentView} />;
     }
 
     switch (currentView) {
-      case "systems":
+      case 'systems':
         return <SystemsView onNavigate={setCurrentView} />;
-      case "consultancy":
+      case 'consultancy':
         return <ConsultancyView onNavigate={setCurrentView} />;
-      case "digital-solutions":
+      case 'digital-solutions':
         return <DigitalSolutionsView onNavigate={setCurrentView} />;
-      case "about":
+      case 'about':
         return <AboutView onNavigate={setCurrentView} />;
-      case "assessment":
+      case 'assessment':
         return <AssessmentView onNavigate={setCurrentView} />;
-      case "privacy":
+      case 'privacy':
         return <LegalView type="privacy" />;
-      case "terms":
+      case 'terms':
         return <LegalView type="terms" />;
-      case "home":
+      case 'home':
       default:
         return (
           <>
@@ -215,12 +215,12 @@ const App: React.FC = () => {
                     <button
                       onClick={() =>
                         setCurrentView(
-                          "service-automacao-residencial-smart-home",
+                          'service-automacao-residencial-smart-home',
                         )
                       }
                       className="inline-flex items-center bg-[#aa1a20] text-white px-10 py-5 rounded-2xl font-black text-sm hover:bg-white hover:text-[#0a1628] transition-all group shadow-2xl"
                     >
-                      Explorar Automação{" "}
+                      Explorar Automação{' '}
                       <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
                     </button>
                   </div>
@@ -288,7 +288,7 @@ const App: React.FC = () => {
                       onClick={scrollToContact}
                       className="inline-flex items-center bg-[#395fa3] text-white px-10 py-5 rounded-2xl font-black text-sm hover:bg-[#2a4678] transition-all group shadow-xl"
                     >
-                      Orçamento de Infra{" "}
+                      Orçamento de Infra{' '}
                       <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
                     </button>
                   </div>
@@ -346,11 +346,11 @@ const App: React.FC = () => {
                     </p>
                     <div className="space-y-4 mb-10">
                       <div className="flex items-center font-bold text-gray-700 text-sm">
-                        <CheckCircle2 className="w-5 h-5 text-[#aa1a20] mr-3" />{" "}
+                        <CheckCircle2 className="w-5 h-5 text-[#aa1a20] mr-3" />{' '}
                         Monitoramento 24h
                       </div>
                       <div className="flex items-center font-bold text-gray-700 text-sm">
-                        <CheckCircle2 className="w-5 h-5 text-[#aa1a20] mr-3" />{" "}
+                        <CheckCircle2 className="w-5 h-5 text-[#aa1a20] mr-3" />{' '}
                         Histórico de Rotas Cloud
                       </div>
                     </div>
@@ -359,7 +359,7 @@ const App: React.FC = () => {
                       onClick={scrollToContact}
                       className="text-[#aa1a20] font-black uppercase tracking-widest text-xs flex items-center hover:translate-x-2 transition-transform group"
                     >
-                      Planos de Telemetria{" "}
+                      Planos de Telemetria{' '}
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1" />
                     </a>
                   </div>
@@ -408,10 +408,10 @@ const App: React.FC = () => {
                         descobrir sua vaga ideal agora mesmo.
                       </p>
                       <button
-                        onClick={() => setCurrentView("careers")}
+                        onClick={() => setCurrentView('careers')}
                         className="bg-[#aa1a20] text-white px-12 py-6 rounded-3xl font-black text-lg hover:bg-white hover:text-[#0a1628] transition-all transform hover:scale-105 shadow-2xl flex items-center justify-center group"
                       >
-                        Ver Vagas e Enviar Currículo{" "}
+                        Ver Vagas e Enviar Currículo{' '}
                         <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform" />
                       </button>
                     </div>
